@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // creer le schema sauce dans la bdd
 const sauceSchema = mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User"},
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   name: { type: String },
   manufacturer: { type: String },
   description: { type: String },
@@ -11,8 +11,8 @@ const sauceSchema = mongoose.Schema({
   heat: { type: Number },
   likes: { type: Number },
   dislikes: { type: Number },
-  userLiked: [ { type: mongoose.Schema.Types.ObjectId, ref: "User"} ],
-  userDisliked: [ { type: mongoose.Schema.Types.ObjectId, ref: "User"} ]
+  usersLiked: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  usersDisliked: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }]
 });
 
 module.exports = mongoose.model('Sauce', sauceSchema);

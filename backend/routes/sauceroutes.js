@@ -1,8 +1,8 @@
 const express = require('express'),
- router = express.Router(),
- auth = require('../middleware/auth'),
- multer = require('../middleware/multer-config'),
- sauceCtrl = require('../controllers/saucectrl')
+    router = express.Router(),
+    auth = require('../middleware/auth'),
+    multer = require('../middleware/multer-config'),
+    sauceCtrl = require('../controllers/saucectrl')
 
 // appel des routes sauces
 router.get('/', auth, sauceCtrl.getAllSauce);
