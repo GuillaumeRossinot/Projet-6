@@ -4,13 +4,17 @@ const express = require('express'),
   userRoutes = require('./routes/user'),
   path = require('path'),
   bodyParser = require('body-parser'),
-  mongoose = require('mongoose')
+  mongoose = require('mongoose'),
+  helmet = require("helmet");
+
+require('dotenv').config();
 //  ejs = require('ejs')
 
 
 app.use(bodyParser.json({ limit: '10mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
 //app.use(bodyParser.raw({type: 'multipart/form-data'}));
+app.use(helmet());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -19,12 +23,13 @@ app.use((req, res, next) => {
   next();
 });
 
+
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
 
 // identifiant de connection a la bdd
-mongoose.connect('mongodb+srv://DbUser:CoUserPassword@cluster0.hxcun.mongodb.net/projet6?retryWrites=true&w=majority',
+mongoose.connect(process.env.DB_URL,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
